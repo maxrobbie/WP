@@ -39,7 +39,7 @@ function event_import_function() {
         foreach($jsonData as $data){
             $args = array(
                 'post_type' => 'event',
-                'post_status' => 'publish',
+                'post_status' => array('publish','trash'),
                 'meta_query' => array(
                     array(
                         'key' => '_eventid',
