@@ -207,6 +207,13 @@ function getevent(){
       	'post_status' => 'publish', 
 		'orderby' =>'meta_value_num',
 		'meta_key' =>'_timestamp',
+		'meta_query' => array(
+            array(
+              'key'     => '_timestamp',
+              'value'   => time(),
+              'compare' => '>=',
+            ),
+        ),
 		'order' =>'ASC',
        	'nopaging' => true 
     );
