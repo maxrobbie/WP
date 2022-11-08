@@ -35,9 +35,10 @@ function update_event_tags($eID,$tags){
 }
 function event_import_function() {
     if(isset($_POST['jsonContent'])){
+		$a = $t = $u = 0;
         $jsonData = json_decode(stripslashes(wp_filter_post_kses($_POST['jsonContent'])),true);
         foreach($jsonData as $data){
-            $args = array(
+			$args = array(
                 'post_type' => 'event',
                 'post_status' => array('publish','trash'),
                 'meta_query' => array(
@@ -50,7 +51,6 @@ function event_import_function() {
             );
             $eventQuery = new WP_Query( $args ); 
 		    if ($eventQuery->have_posts()) {
-                $a = $t = $u = 0;
                 while ( $eventQuery->have_posts() ) : $eventQuery->the_post(); 
                     $timeCheck = get_post_meta(get_the_ID(),'_timestamp',true);
                     if($timeCheck >= time()){
